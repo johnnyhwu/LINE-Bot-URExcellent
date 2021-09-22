@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <title>Manage</title>
+
+    {% csrf_token %}
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            Text Collection Manage
+        </header>
+
+        <div class="item-container">
+            <!--
+                template: 
+
+                <div class="item" id="record-0">
+                    <span class="item-text">TWFWEFEQWFWEFf</span>
+                    <span class="item-btn" onclick="deleteRecord(0)">刪除</span>
+                </div>
+            -->
+
+            {% for item in data %} 
+                <div class="item" id="record-{{ item.1 }}">
+                    <span class="item-text">{{ item.0 }}</span>
+                    <span class="item-btn" onclick="deleteRecord({{ item.1 }})">刪除</span>
+                </div>
+            {% endfor %}
+
+            
+        </div>
+
+        <div class="add-item-container">
+            <input type="text" placeholder="輸入語錄...">
+            <button onclick="addRecord('test')">新增</button>
+        </div>
+    </div>
+</body>
+</html>
